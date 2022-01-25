@@ -11,7 +11,8 @@ export default class Game extends Component {
         item: "",
         guess: null,
         gamePlayed: false,
-        gameCount: 0
+        gameCount: 0,
+        score: 0
     }
 
     getGameImage = () => {
@@ -58,12 +59,18 @@ export default class Game extends Component {
     guessChoice = (e) => {
         this.setState({
             gamePlayed: true,
-            guess: e.target.id
+            guess: e.target.id,
+            score: (this.state.item === e.target.id) ? this.state.score + 1 : this.state.score
         })
     }
 
     gameComplete = () => {
-        let message = (this.state.item === this.state.guess) ? "You're Right!" : `Wrong, Try Again. Correct Answer: ${this.state.item}`
+        let message
+        if (this.state.item === this.state.guess) {
+            message = "You're Right!"
+        } else {
+            message = `Wrong, Try Again. Correct Answer: ${this.state.item}`
+        }
         return (
             <div>{message}</div>
         )
@@ -75,7 +82,8 @@ export default class Game extends Component {
             image: "",
             item: "",
             gamePlayed: false,
-            gameCount: this.state.gameCount++
+            gameCount: this.state.gameCount + 1,
+            score: this.state.score
         })
         this.getGameImage()
     }
@@ -96,6 +104,7 @@ export default class Game extends Component {
         return (
             <div className="namegame">
                 <div className="titlegame">Guess which one is associated with this image:</div>
+                <div className="scoregame">Score: {this.state.score}</div>
                 <img src={this.state.image} id="namegameimage"/>
                 {this.state.gamePlayed ? this.gameComplete() : <div className="namegamebutton">{this.playGame()}</div>}
                 {this.state.gamePlayed ? this.handlePlayAgain() : null}

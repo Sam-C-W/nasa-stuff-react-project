@@ -20,7 +20,7 @@ class SearchResults extends Component {
     }
 
     // This determines the HTML to render and the card structure, mapping the images from the state onto each card
-    getResults = (images) => {
+    getResults = () => {
         if (this.props.getResults !== undefined && this.props.getResults.length > 0) {
             return this.props.getResults.map(image =>
                 <div className="cardborder">
