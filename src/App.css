@@ -98,6 +98,14 @@ button:hover {
   font-size: 30px;
 }
 
+.scoregame {
+  width: 100%;
+  display: block;
+  text-align: left;
+  margin: 0 30% 20px 30%;
+  font-size: 25px;
+}
+
 .playagainbutton {
   display: block;
   width: 100%;
